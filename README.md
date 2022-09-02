@@ -31,6 +31,10 @@ We need two lambdas ``todoApp`` and ``todoAppProxy``. The ```todoAppProxy``` is 
   - Enable Function URL, Auth NONE
   - Click on save
   - Tab Configuration > Concurrency set value to 1 (Lambda concurrency throttling)
+  - Copy & Paste the code into the Lambda Editor
+    - [index.js](./miscellaneous/lambda-code/index.js)
+    - [create-target-payload.js](./miscellaneous/lambda-code/create-target-payload.js)
+  - Deploy
 
 ### Allow proxy to call actual lambda
 Goto IAM > Policies > Create Policy
