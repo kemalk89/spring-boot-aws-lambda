@@ -31,7 +31,7 @@ public class TodoController {
 		log.info("Running getTodo where ID is " + todoId);
 		
 		var todo = new Todo();
-		todo.setTitle("Testtitle");
+		todo.setTitle("Testtitle " + todoId);
 		todo.setDescription("This is a test description.");
 		
 		return todo;
