@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,26 +16,22 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/todos")
 public class TodoController {
 
+	private TodoService todoService;
+
+	@Autowired
+	public TodoController(TodoService todoService) {
+		this.todoService = todoService;
+	}
+
 	@GetMapping
 	public List<Todo> getTodos() {
 		log.info("Running getTodos...");
-		
-		var todo = new Todo();
-		todo.setTitle("Testtitle");
-		todo.setDescription("This is a test description.");
-		
-		return Arrays.asList(todo);
+		return todoService.getTodos();
 	}
 	
 	@GetMapping("/{todoId}")
 	public Todo getTodo(@PathVariable String todoId) {
 		log.info("Running getTodo where ID is " + todoId);
-		
-		var todo = new Todo();
-		todo.setTitle("Testtitle " + todoId);
-		todo.setDescription("This is a test description.");
-		
-		return todo;
+		return todoService.getTodo(todoId);
 	}
-	
 }
