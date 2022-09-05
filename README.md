@@ -24,7 +24,7 @@ We need two lambdas ``todoApp`` and ``todoAppProxy``. The ```todoAppProxy``` is 
   - Name: **todoApp**
   - Runtime: **java11**
   - Click on save
-  - Tab Code > Runtime settings > Edit > Set handler to [com.example.demo.StreamLambdaHandler](./src/main/java/com/example/demo/StreamLambdaHandler.java)
+  - Tab Code > Runtime settings > Edit > Set handler to [com.examples.todo.lambda.StreamLambdaHandler](src/main/java/com/examples/todo/StreamLambdaHandler.java)
 - Now goto AWS Lambda and create:
   - Name: **todoAppProxy**
   - Runtime: **node**

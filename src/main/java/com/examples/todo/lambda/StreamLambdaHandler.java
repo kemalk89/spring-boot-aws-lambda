@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.examples.todo.lambda;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +11,7 @@ import com.amazonaws.serverless.proxy.spring.SpringBootLambdaContainerHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
 
+import com.examples.todo.TodoApplication;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
