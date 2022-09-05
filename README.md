@@ -54,4 +54,4 @@ Goto Lambda > todoAppProxy > Tab Configuration > Permissions > Section Execution
 # Upload the code to AWS
 Whenever you do some changes you can run this commands to deploy your app on Lambda.
 - Run `./mvnw clean package`
-- Run `aws lambda update-function-code --function-name todoApp --zip-file fileb://./target/demo-0.0.1-SNAPSHOT.jar`
+- Run `aws lambda update-function-code --function-name todoApp --zip-file fileb://./target/todo-api-0.0.1-SNAPSHOT.jar`

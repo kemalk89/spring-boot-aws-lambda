@@ -3,10 +3,10 @@ AWS.config.region = 'eu-central-1';
 
 const lambda = new AWS.Lambda();
 const createTargetPayload = require('./create-target-payload');
-const ACCOUNT_ID = '<PUT_HERE_YOUR_ID>';
+
+const ARN_TODO = 'arn:aws:lambda:eu-central-1:<ACCOUNT_ID>:function:todoApp';
 
 exports.handler = (event, context) => {
-    // here we create the payload which will be passed to the target lambda
     const payload = createTargetPayload({
         path: event.requestContext.http.path || '',
         httpMethod: event.requestContext.http.method,
@@ -15,10 +15,13 @@ exports.handler = (event, context) => {
         requestId: event.requestContext.requestId,
         requestTime: event.requestContext.time,
         requestTimeEpoch: event.requestContext.timeEpoch,
+        contentType: event.headers['content-type'],
+        body: event.body,
+
     });
 
     const params = {
-        FunctionName: `arn:aws:lambda:eu-central-1:${ACCOUNT_ID}:function:todoApp`,
+        FunctionName: ARN_TODO,
         InvocationType: 'RequestResponse',
         Payload: JSON.stringify(payload)
     };

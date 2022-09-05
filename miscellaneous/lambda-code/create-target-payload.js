@@ -1,14 +1,19 @@
-module.exports = ({path, httpMethod, requestId, requestTime, requestTimeEpoch, headers, queryStringParameters}) => {
-    return {
+module.exports = ({path, httpMethod, requestId, requestTime, requestTimeEpoch, headers, queryStringParameters, contentType, body}) => {
+    // the payload format can be found here https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-develop-integrations-lambda.html
+    const payload = {
         path,
         httpMethod,
-        isBase64Encoded: true,
+        body,
+        isBase64Encoded: false,
         queryStringParameters,
         multiValueQueryStringParameters: {},
         pathParameters: {},
         stageVariables: {},
         headers,
         multiValueHeaders: {
+            "Content-Type": [
+                contentType
+            ],
             "Accept": [
                 "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
             ],
@@ -55,4 +60,6 @@ module.exports = ({path, httpMethod, requestId, requestTime, requestTimeEpoch, h
             },
         }
     };
+
+    return payload;
 }
