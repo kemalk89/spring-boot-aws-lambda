@@ -5,8 +5,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
-import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
 import com.amazonaws.serverless.proxy.model.AwsProxyResponse;
+import com.amazonaws.serverless.proxy.model.HttpApiV2ProxyRequest;
 import com.amazonaws.serverless.proxy.spring.SpringBootLambdaContainerHandler;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestStreamHandler;
@@ -16,13 +16,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class StreamLambdaHandler implements RequestStreamHandler {
-    private static SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
+    private static SpringBootLambdaContainerHandler<HttpApiV2ProxyRequest, AwsProxyResponse> handler;
     
     static {
     	log.info("Configuring for AWS proxy events.");
     	
         try {
-            handler = SpringBootLambdaContainerHandler.getAwsProxyHandler(TodoApplication.class);
+            handler = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(TodoApplication.class);
             // If you are using HTTP APIs with the version 2.0 of the proxy model, use the getHttpApiV2ProxyHandler
             // method: handler = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(Application.class);
         } catch (ContainerInitializationException e) {
