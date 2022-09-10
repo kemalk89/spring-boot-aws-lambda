@@ -23,8 +23,6 @@ public class StreamLambdaHandler implements RequestStreamHandler {
     	
         try {
             handler = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(TodoApplication.class);
-            // If you are using HTTP APIs with the version 2.0 of the proxy model, use the getHttpApiV2ProxyHandler
-            // method: handler = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(Application.class);
         } catch (ContainerInitializationException e) {
             // if we fail here. We re-throw the exception to force another cold start
             e.printStackTrace();
