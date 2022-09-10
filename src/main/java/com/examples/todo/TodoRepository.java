@@ -1,6 +1,9 @@
 package com.examples.todo;
 
 import lombok.NonNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -20,8 +23,9 @@ public class TodoRepository {
         todos.add(todo);
     }
 
-    public List<Todo> getTodos() {
-        return todos;
+    public Page<Todo> getTodos(Pageable pageable) {
+        Page<Todo> page = new PageImpl<>(todos, pageable, todos.size());
+        return page;
     }
 
     public Todo getTodo(@NonNull Long todoId) {

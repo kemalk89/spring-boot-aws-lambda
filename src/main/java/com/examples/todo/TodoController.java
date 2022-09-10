@@ -1,8 +1,9 @@
 package com.examples.todo;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,9 +28,9 @@ public class TodoController {
 	}
 
 	@GetMapping
-	public List<Todo> getTodos() {
+	public Page<Todo> getTodos(@PageableDefault Pageable pageable) {
 		log.info("Running getTodos...");
-		return todoService.getTodos();
+		return todoService.getTodos(pageable);
 	}
 	
 	@GetMapping("/{todoId}")
